@@ -1,0 +1,10 @@
+---
+version: '3'
+services:
+  django:
+    build: .
+    working_dir: /app/django_example/
+    environment: [APP_ENV=dev]
+    volumes: [./django-example/:/app/]
+    ports: [8000:8000]
+    command: python manage.py runserver 0.0.0.0:8000

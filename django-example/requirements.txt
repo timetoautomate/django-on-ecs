@@ -1,0 +1,2 @@
+#https://github.com/coreyjs/nhl-api-py
+django==4.2.11
