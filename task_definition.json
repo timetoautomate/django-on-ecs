@@ -1,20 +1,31 @@
 {
+    "taskRoleArn": "arn:aws:iam::376011172444:role/SBTimeDevEcsTaskRole",
     "executionRoleArn": "arn:aws:iam::376011172444:role/SBTimeDevEcsTaskRole",
     "containerDefinitions": [{
-      "name": "django_app",
-      "image": "dkr.ecr.us-west-2.amazonaws.com/ci_cd",
-      "memory": "2048",
+      "name": "django-app",
+      "image": "376011172444.dkr.ecr.us-east-2.amazonaws.com/hockey:latest",
+      "memory": "512",
       "essential": true,
       "portMappings": [{
         "containerPort": 80,
         "protocol": "tcp"
-      }]
+      }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/ecs-hockey-1",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      }
     }],
     "volumes": [],
     "requiresCompatibilities": ["FARGATE"],
     "networkMode": "awsvpc",
     "placementConstraints": [],
-    "family": "application-stack",
-    "memory": "2048",
-    "cpu": "1024"
+    "family": "ecs-hockey-1",
+    "memory": "512",
+    "cpu": "256"
 }
